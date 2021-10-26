@@ -52,9 +52,13 @@ function to_blog_card($the_content) {
 				}
 				$logo = esc_url( get_site_icon_url( 32 ) ) ;
 				$sitetitle = get_bloginfo('name');
-				$thumbnail = get_the_post_thumbnail($id, 'cps_thumbnails', array('class' => 'blog-card-thumb-image'));
-				if ( !$thumbnail ) {
-					$thumbnail = '<img src="'.get_template_directory_uri().'/img/noimg320.png" />';
+				$thumbnail = get_the_post_thumbnail($id, 'cps_thumbnails', array('width ' => '162','height ' => '91','class' => 'blog-card-thumb-image'));
+				if ( ! $thumbnail ) {
+					if ( get_theme_mod( 'jin_noimg_url') ) {
+						$thumbnail = '<img src="'.get_theme_mod( 'jin_noimg_url').'" width="162" height="91" />';
+					}else{
+						$thumbnail = '<img src="'.get_template_directory_uri().'/img/noimg320.png" width="162" height="91" />';
+					}
 				}
 
 			$tag = '<a href="'.$url.'" class="blog-card"><div class="blog-card-hl-box"><i class="jic jin-ifont-post"></i><span class="blog-card-hl"></span></div><div class="blog-card-box"><div class="blog-card-thumbnail">'.$thumbnail.'</div><div class="blog-card-content"><span class="blog-card-title">'.$title.'</span><span class="blog-card-excerpt">'.$excerpt.'...</span></div></div></a>';
